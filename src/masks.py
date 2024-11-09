@@ -1,4 +1,4 @@
-def get_mask_account(number_account: int) -> str:
+def get_mask_account(number_account: str) -> str:
     """
         Функция, которая принимает на вход счета и возвращает ее маску.
     """
@@ -9,7 +9,7 @@ def get_mask_account(number_account: int) -> str:
 #print(get_mask_account(1234567891234567))
 
 
-def get_mask_card_number(number_card: int) -> str:
+def get_mask_card_number(number_card: str) -> str:
     """
 
     Функция, которая принимает на вход номер карты и возвращает ее маску.
