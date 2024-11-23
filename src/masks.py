@@ -3,7 +3,7 @@ def get_mask_account(number_account: str) -> str:
         Функция, которая принимает на вход номер счета и возвращает его маску.
     """
     str_number_account = str(number_account)
-    if len(str_number_account) != 16:
+    if len(str_number_account[-16::]) != 16:
         raise ValueError("Некорректная длина номера карты")
     else:
         return f"**{str_number_account[-4:]}"
