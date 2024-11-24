@@ -1,5 +1,6 @@
 import pytest
-from src.widget import mask_account_card, get_date
+
+from src.widget import get_date, mask_account_card
 
 
 # Функция mask_account_card
@@ -21,8 +22,10 @@ def test_widget_len_account_and_len_number_card(info_by_card: str) -> None:
 
 def test_no_info_by_card() -> None:
     """Проверка работы функции при отсутствии ввода данных"""
-    with pytest.raises(TypeError):
-        mask_account_card()
+
+    #assert mask_account_card("Visa Platinum 7000792289606361")
+    with pytest.raises(ValueError):
+        mask_account_card("")
 
 
 # Функция get_data
@@ -51,4 +54,4 @@ def test_get_date_by_different_parameter(card_data: str) -> None:
 def test_no_get_date() -> None:
     """Тестирование на корректность работы при отсутствии даты"""
     with pytest.raises(TypeError):
-        get_date()
+        get_date('')
