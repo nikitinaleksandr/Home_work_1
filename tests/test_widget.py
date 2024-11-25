@@ -22,13 +22,10 @@ def test_widget_len_account_and_len_number_card(info_by_card: str) -> None:
 
 def test_no_info_by_card() -> None:
     """Проверка работы функции при отсутствии ввода данных"""
-
-    #assert mask_account_card("Visa Platinum 7000792289606361")
     with pytest.raises(ValueError):
         mask_account_card("")
 
 
-# Функция get_data
 def test_get_date() -> None:
     """Тестирование проверки правильности преобразования даты"""
     assert get_date("2024-03-11Т02:26:18.671407") == "11.03.2024"
