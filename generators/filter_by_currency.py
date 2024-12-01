@@ -1,4 +1,5 @@
 from typing import Union
+from wsgiref.validate import assert_
 
 
 def filter_by_currency(transactions: Union[list, dict], currency: str) ->  Union[list, dict]:
@@ -7,6 +8,9 @@ def filter_by_currency(transactions: Union[list, dict], currency: str) ->  Union
     Функция должна возвращать итератор, который поочередно выдает транзакции, где валюта
     операции соответствует заданной (например, USD).
     """
+    if transactions == []:
+        return iter([])
+        # raise ValueError("Отсутствует список транзакций")
     for item in transactions:
         if item["operationAmount"]["currency"]["code"] == currency:
         # if currency in item["operationAmount"]:
@@ -15,6 +19,8 @@ def filter_by_currency(transactions: Union[list, dict], currency: str) ->  Union
 
 def transaction_descriptions(transactions: Union[list, dict]) -> str:
     """Генератор, который принимает список словарей с транзакциями и возвращает описание каждой операции по очереди."""
+    if transactions == []:
+        return iter([])
     for item in transactions:
         yield item["description"]
 
@@ -36,7 +42,7 @@ def card_number_generator(start: str, stop: str) -> str:
     0000 0000 0000 0005
     """
 
-    for num in range(start, stop):
+    for num in range(start, stop + 1):
         card_number = str(num)
         while len(card_number) < 16:
             card_number = '0' + card_number
@@ -126,15 +132,15 @@ transactions = (
 
 
 usd_transactions = filter_by_currency(transactions, "USD")
-for _ in range(2):
+for _ in range(3):
     print(next(usd_transactions))
-#
-# descriptions = transaction_descriptions(transactions)
-# for _ in range(5):
-#     print(next(descriptions))
 
-# for card_number in card_number_generator(1, 5):
-#     print(card_number)
+descriptions = transaction_descriptions(transactions)
+for _ in range(5):
+    print(next(descriptions))
+
+for card_number in card_number_generator(1, 5):
+    print(card_number)
 
 
 
