@@ -50,5 +50,5 @@ def test_get_date_by_different_parameter(card_data: str) -> None:
 
 def test_no_get_date() -> None:
     """Тестирование на корректность работы при отсутствии даты"""
-    with pytest.raises(TypeError):
+    with pytest.raises(ValueError):
         get_date('')

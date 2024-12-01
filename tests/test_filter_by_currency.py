@@ -283,7 +283,7 @@ def test_card_number_generator() -> None:
     # Правильность номеров карт в заданном диапазоне
 
     assert list(card_number_generator(1, 2)) == ['0000 0000 0000 0001', '0000 0000 0000 0002']
-
+    assert list(card_number_generator(1, 2)) == ['0000 0000 0000 0001', '0000 0000 0000 0002']
     #корректность форматирования номеров карт.
     assert (
             len(card_number) == 19
@@ -296,5 +296,5 @@ def test_card_number_generator() -> None:
             and card_number[14] == " "
             )
     # генератор корректно обрабатывает крайние значения диапазона и правильно завершает генерацию.
-    # with pytest.raises(ValueError):
-    #      card_number_generator(start: 1, stop: 100000000000000)
+    with pytest.raises(ValueError):
+          card_number_generator(-1, 9999999999)

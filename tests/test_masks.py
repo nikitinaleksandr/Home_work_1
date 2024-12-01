@@ -45,5 +45,5 @@ def test_get_mask_card_number_wrong_type(number_card: str) -> None:
 
 def test_no_number_card() -> None:
     """Тестирование отсутствия ввода номеров карт"""
-    with pytest.raises(TypeError):
+    with pytest.raises(ValueError):
         get_mask_card_number("")
