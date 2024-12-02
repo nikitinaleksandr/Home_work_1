@@ -13,8 +13,8 @@ def filter_by_state(list_dictionaries: list, state: str) -> list:
     """
     output_list = []
     for dict in list_dictionaries:
-        # if dict["state"] != 'EXECUTED' or dict["state"] != 'CANCELED':
-        #      raise ValueError
+        # if dict["state"] != state:
+        #     return []
         if dict["state"] == state:
             output_list.append(dict)
         if not "state" in dict:
