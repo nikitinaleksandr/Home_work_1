@@ -1,6 +1,7 @@
 import pytest
 
-from generators.filter_by_currency import filter_by_currency, transaction_descriptions, card_number_generator, card_number
+from generators.filter_by_currency import (filter_by_currency, transaction_descriptions, card_number_generator,
+                                           card_number)
 
 
 def test_filter_by_currency() -> None:
@@ -90,9 +91,18 @@ def test_filter_by_currency() -> None:
             "to": "Счет 14211924144426031657"
         }
     ], "USD"))
-    assert usd_transactions == [{'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572', 'operationAmount': {'amount': '9824.07', 'currency': {'name': 'USD', 'code': 'USD'}}, 'description': 'Перевод организации', 'from': 'Счет 75106830613657916952', 'to': 'Счет 11776614605963066702'},
-{'id': 142264268, 'state': 'EXECUTED', 'date': '2019-04-04T23:20:05.206878', 'operationAmount': {'amount': '79114.93', 'currency': {'name': 'USD', 'code': 'USD'}}, 'description': 'Перевод со счета на счет', 'from': 'Счет 19708645243227258542', 'to': 'Счет 75651667383060284188'},
-{'id': 895315941, 'state': 'EXECUTED', 'date': '2018-08-19T04:27:37.904916', 'operationAmount': {'amount': '56883.54', 'currency': {'name': 'USD', 'code': 'USD'}}, 'description': 'Перевод с карты на карту', 'from': 'Visa Classic 6831982476737658', 'to': 'Visa Platinum 8990922113665229'}]
+    assert usd_transactions == [{'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572',
+                                 'operationAmount': {'amount': '9824.07', 'currency': {'name': 'USD', 'code': 'USD'}},
+                                 'description': 'Перевод организации', 'from': 'Счет 75106830613657916952', 'to':
+                                 'Счет 11776614605963066702'},
+                                {'id': 142264268, 'state': 'EXECUTED', 'date': '2019-04-04T23:20:05.206878',
+                                 'operationAmount': {'amount': '79114.93', 'currency': {'name': 'USD', 'code': 'USD'}},
+                                 'description': 'Перевод со счета на счет', 'from': 'Счет 19708645243227258542', 'to':
+                                 'Счет 75651667383060284188'},
+                                {'id': 895315941, 'state': 'EXECUTED', 'date': '2018-08-19T04:27:37.904916',
+                                 'operationAmount': {'amount': '56883.54', 'currency': {'name': 'USD', 'code': 'USD'}},
+                                 'description': 'Перевод с карты на карту', 'from': 'Visa Classic 6831982476737658',
+                                 'to': 'Visa Platinum 8990922113665229'}]
 
 
 transactions = (
@@ -180,15 +190,13 @@ transactions = (
 empty_currency = list(filter_by_currency(transactions, ""))
 assert empty_currency == []
 
-
-
 #Пустой список транзакций или отсутствие валютных операций
 
 assert list(filter_by_currency([], "USD")) == []
 
 
-#Тестирование функции transaction_descriptions:
 def test_transaction_descriptions() -> None:
+    """Тестирование функции transaction_descriptions:"""
     transactions = (
         [
             {
@@ -269,7 +277,9 @@ def test_transaction_descriptions() -> None:
         ]
     )
 #функция возвращает корректные описания для каждой транзакции.
-    assert list(transaction_descriptions(transactions)) == ['Перевод организации', 'Перевод со счета на счет', 'Перевод со счета на счет', 'Перевод с карты на карту', 'Перевод организации']
+    assert list(transaction_descriptions(transactions)) == ['Перевод организации', 'Перевод со счета на счет',
+                                                            'Перевод со счета на счет', 'Перевод с карты на карту',
+                                                            'Перевод организации']
 
 #Тестируйте работу функции при пустом списке транзакций.
 #
@@ -296,5 +306,7 @@ def test_card_number_generator() -> None:
             and card_number[14] == " "
             )
     # генератор корректно обрабатывает крайние значения диапазона и правильно завершает генерацию.
+    # with pytest.raises(ValueError):
+    #       card_number_generator(-1, 9999999999)
     with pytest.raises(ValueError):
-          card_number_generator(-1, 9999999999)
+        list(card_number_generator(start=-1, stop=9999999999))
