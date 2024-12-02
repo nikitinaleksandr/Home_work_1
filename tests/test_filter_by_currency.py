@@ -13,7 +13,6 @@ def test_filter_by_currency() -> None:
     соответствующих валютных операций
     """
 
-#Корректность фильтрации транзакции по заданной валюте
     usd_transactions = list(filter_by_currency([
         {
             "id": 939719570,
@@ -186,11 +185,9 @@ transactions = (
 )
 
 
-#Транзакции в заданной валюте отсутствуют
 empty_currency = list(filter_by_currency(transactions, ""))
 assert empty_currency == []
 
-#Пустой список транзакций или отсутствие валютных операций
 
 assert list(filter_by_currency([], "USD")) == []
 
@@ -276,13 +273,11 @@ def test_transaction_descriptions() -> None:
             }
         ]
     )
-#функция возвращает корректные описания для каждой транзакции.
+
     assert list(transaction_descriptions(transactions)) == ['Перевод организации', 'Перевод со счета на счет',
                                                             'Перевод со счета на счет', 'Перевод с карты на карту',
                                                             'Перевод организации']
 
-#Тестируйте работу функции при пустом списке транзакций.
-#
     assert list(transaction_descriptions([])) == []
 
 
@@ -294,7 +289,6 @@ def test_card_number_generator() -> None:
 
     assert list(card_number_generator(1, 2)) == ['0000 0000 0000 0001', '0000 0000 0000 0002']
     assert list(card_number_generator(1, 2)) == ['0000 0000 0000 0001', '0000 0000 0000 0002']
-    #корректность форматирования номеров карт.
     assert (
             len(card_number) == 19
             and card_number[0:4].isdigit()
