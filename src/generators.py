@@ -8,9 +8,12 @@ def filter_by_currency(transactions: Union[list, dict], currency: str) -> Union[
     Функция должна возвращать итератор, который поочередно выдает транзакции, где валюта
     операции соответствует заданной (например, USD).
     """
+    if currency == "":
+        raise ValueError("Не указана валюта транзакции")
+    if currency not in ["USD", "RUB", "EURO"]:
+        raise ValueError("Неверная валюта")
     if transactions == []:
-        return iter([])
-        # raise ValueError("Отсутствует список транзакций")
+        raise ValueError("Отсутствует список транзакций")
     for item in transactions:
         if item["operationAmount"]["currency"]["code"] == currency:
             yield item
@@ -18,9 +21,12 @@ def filter_by_currency(transactions: Union[list, dict], currency: str) -> Union[
 
 def transaction_descriptions(transactions: Union[list, dict]) -> str:
     """Генератор, который принимает список словарей с транзакциями и возвращает описание каждой операции по очереди."""
+
     if transactions == []:
-        return iter([])
+        raise ValueError("Отсутствует список транзакций")
     for item in transactions:
+        if not item.get("description"):
+            raise ValueError("Отсутствует описание транзакций")
         yield item["description"]
 
 
