@@ -17,7 +17,7 @@ def filter_by_state(list_dictionaries: list, state: str) -> list:
         #     return []
         if dict["state"] == state:
             output_list.append(dict)
-        if not "state" in dict:
+        if "state" not in dict:
             raise KeyError("Неверное значение 'state'")
     return output_list
 

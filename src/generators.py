@@ -53,7 +53,7 @@ def card_number_generator(start: str, stop: str) -> str:
             card_number = '0' + card_number
 
         # if 1 > int(card_number) or int(card_number) > 9999999999999999:
-        if 1 > start>9999999999999999 or stop > 9999999999999999:
+        if 1 > start > 9999999999999999 or stop > 9999999999999999:
             raise ValueError("недопустимый номер карты")
 
         form_card_number = f"{card_number[0:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:16]}"
