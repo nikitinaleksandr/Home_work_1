@@ -82,17 +82,39 @@ def test_transaction_descriptions(all_transactions) -> None:
                                                             'Перевод организации']
 
 
-@pytest.mark.parametrize("x, y, expected", [("1", "5", ['0000 0000 0000 0001', '0000 0000 0000 0002',
+@pytest.mark.parametrize("x, y, expected", [(1, 5, ['0000 0000 0000 0001', '0000 0000 0000 0002',
                                                     '0000 0000 0000 0003', '0000 0000 0000 0004',
                                                     '0000 0000 0000 0005'])])
 def test_card_number_generator(x, y, expected) -> None:
     """Тестирование генератора card_number_generator. Правильность номеров карт в заданном диапазоне"""
 
-    list_card_number_generator = card_number_generator("x", "y")
+    list_card_number_generator = list(card_number_generator(x, y))
     assert list_card_number_generator == expected
    # assert list(card_number_generator(1, 2)) == ['0000 0000 0000 0001', '0000 0000 0000 0002']
 
 
+@pytest.mark.parametrize("x, y, expected", [(1, 5, ['0000 0000 0000 0001', '0000 0000 0000 0002',
+                                                    '0000 0000 0000 0003', '0000 0000 0000 0004',
+                                                    '0000 0000 0000 0005'])])
+
+def test_correct_card_number_generator(x, y, expected):
+    """Тестирование генератора card_number_generator. Корректность номеров карт"""
+    assert (
+            len(card_number) == 19
+            and card_number[0:4].isdigit()
+            and card_number[5:9].isdigit()
+            and card_number[10:14].isdigit()
+            and card_number[15:19].isdigit()
+            and card_number[4] == " "
+            and card_number[9] == " "
+            and card_number[14] == " "
+            )
+
+@pytest.mark.parametrize("x, y", [(-1, 9999999999), (5, 100000000000000000000000)])
+def test_correct_card_number_generator(x, y):
+
+    with pytest.raises(ValueError):
+        next(card_number_generator(x, y))
 
 
 
