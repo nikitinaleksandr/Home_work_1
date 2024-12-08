@@ -34,7 +34,7 @@ def log(filename=None):
         return wrapper
     return logging
 
-@log(1)
+@log()
 def my_function(x, y):
     """Функция сложения двух чисел"""
     return x + y
