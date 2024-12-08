@@ -1,8 +1,7 @@
 import pytest
 
-
-from src.generators import (filter_by_currency, transaction_descriptions, card_number_generator,
-                            card_number)
+from src.generators import (card_number, card_number_generator,
+                            filter_by_currency, transaction_descriptions)
 
 
 def test_filter_by_currency(all_transactions) -> None:
@@ -23,7 +22,7 @@ def test_filter_by_currency(all_transactions) -> None:
                                  'operationAmount': {'amount': '79114.93', 'currency': {'name': 'USD', 'code': 'USD'}},
                                  'description': 'Перевод со счета на счет', 'from': 'Счет 19708645243227258542',
                                  'to': 'Счет 75651667383060284188'}, {'id': 895315941, 'state': 'EXECUTED', 'date':
-                                 '2018-08-19T04:27:37.904916', 'operationAmount': {'amount': '56883.54', 'currency':
+                                '2018-08-19T04:27:37.904916', 'operationAmount': {'amount': '56883.54', 'currency':
                                 {'name': 'USD', 'code': 'USD'}}, 'description': 'Перевод с карты на карту', 'from':
                                  'Visa Classic 6831982476737658', 'to': 'Visa Platinum 8990922113665229'}]
 

@@ -1,12 +1,8 @@
-import os
-from dbm import error
-from fileinput import filename
 from pathlib import Path
-from functools import wraps
-from mypy.util import os_path_join
 
 current_dir = Path(__file__).parent.parent.resolve()
 log_scripts = current_dir/'data'/'mylog.txt'
+
 
 def log(filename=None):
     """Декоратор, который логирует начало и конец выполнения функции, а также ее результаты и возникшие ошибки"""
@@ -34,33 +30,11 @@ def log(filename=None):
         return wrapper
     return logging
 
+
 @log()
 def my_function(x, y):
     """Функция сложения двух чисел"""
     return x + y
+
+
 my_function(2, 3)
-
-
-
-
-
-
-    #      def inner(*args, **kwargs):
-    #         result = func(*args, **kwargs)
-    #
-    #         if result == filename():
-    #             result = func()
-    #         pass# как записать лог в указанный файл?
-    #     else:
-    #         print('вывод логов в консоль')
-    #
-    #
-    # return wrapper
-
-
-
-
-
-
-
-    # return x + y
