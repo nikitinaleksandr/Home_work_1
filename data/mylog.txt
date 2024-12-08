@@ -1,21 +1,2 @@
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
-Function my_function called whith args: (2, 3) and kwargs: {}. Result: 5
+Function my_function ok
+my_function ok
