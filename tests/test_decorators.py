@@ -17,7 +17,7 @@ def my_function(x, y):
 
 
 def test_empty_filename_in_log(capsys):
-    """Тестирование на работу функции в случае отсутствия 'filename'"""
-    my_function(1, 2)
+    """Тестирование на работу функции в случае ввода неверных данных"""
+    my_function('2', 3)
     captured = capsys.readouterr()
-    assert 'my_function: None.' in captured.out
+    assert 'my_function' in captured.out

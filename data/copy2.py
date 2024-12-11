@@ -4,27 +4,30 @@ current_dir = Path(__file__).parent.parent.resolve()
 log_scripts = current_dir/'data'/'mylog.txt'
 
 
-def log(filename=None):
+def log(filename="mylog.txt"):
     """Декоратор, который логирует начало и конец выполнения функции, а также ее результаты и возникшие ошибки"""
     def logging(func):
         def wrapper(*args, **kwargs):
+
             print('До выполнения функции')
+            # error_message = None
+
+
             try:
                 result = func(*args, **kwargs)
-                if filename is not None:
-                    with open(log_scripts, "a") as file:
-                        file.write(f'Function {func.__name__}: {"a"}. Inputs: {args}, kwargs: {kwargs}.')
-                else:
-                    with open(log_scripts, "a") as file:
-                        file.write(f'{func.__name__} ok\n')
+                raise func(*args, **kwargs)
+
             except Exception as e:
-                if filename is not None:
-                    with open(filename, "a", encoding="utf-8") as file:
-                        print(f'Function {func.__name__}: {e}. Inputs: {args}, kwargs: {kwargs}.')
-                else:
-                    print(f"Функция: {func.__name__} - ERROR: {e} with inputs: {args}, {kwargs}")
-                result = None
-                print('После выполнения функции')
+
+                error_message = str(e)
+                print(f'Function {func.__name__}: {error_message}. Inputs: {args}, kwargs: {kwargs}.')
+            if filename == "":
+                print('Not filename')
+            else:
+                with open(log_scripts, "a") as file:
+                    file.write(f'{func.__name__} ok\n')
+
+            print('После выполнения функции')
             return result
         return wrapper
     return logging
@@ -39,4 +42,4 @@ def my_function(x, y):
     return x + y
 
 
-my_function("2", 3)
+my_function('2', 3)
