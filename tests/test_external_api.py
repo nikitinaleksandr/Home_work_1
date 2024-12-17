@@ -1,5 +1,6 @@
 from shlex import quote
 from unittest.mock import patch
+
 from src.external_api import sum_transactions
 
 

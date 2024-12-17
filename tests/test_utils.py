@@ -1,8 +1,8 @@
 import os
+from unittest import mock
 from unittest.mock import patch
 
 import requests
-from unittest import mock
 
 from src.utils import list_dict_transactions
 
