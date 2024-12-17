@@ -7,7 +7,6 @@ import requests
 current_dir = Path(__file__).parent.parent.resolve()
 operations_file_json = current_dir/'data'/'operations.json'
 
-
 def list_dict_transactions(operations_file_json: list) -> Union[list, dict]:
     """
     Функция, которая принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых

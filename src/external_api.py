@@ -1,17 +1,13 @@
-from locale import currency
-from typing import Union
 import json
 from pathlib import Path
-from json import JSONDecodeError
 import requests
-from blib2to3.pytree import convert
-
-current_dir = Path(__file__).parent.parent.resolve()
-operations_file_json = current_dir/'data'/'operations.json'
 from dotenv import load_dotenv
 import os
 
 load_dotenv('../.env')
+current_dir = Path(__file__).parent.parent.resolve()
+operations_file_json = current_dir/'data'/'operations.json'
+
 
 def sum_transactions(operations_file: dict[str, float]) -> float:
     """
@@ -20,7 +16,7 @@ def sum_transactions(operations_file: dict[str, float]) -> float:
     валют и конвертации суммы операции в рубли.
     """
 
-    if operations_file ["operationAmount"]["currency"]["code"] == "RUB":
+    if operations_file["operationAmount"]["currency"]["code"] == "RUB":
         return operations_file["operationAmount"]["amount"]
     else:
         API_KEY = os.getenv('API_KEY')
@@ -29,28 +25,29 @@ def sum_transactions(operations_file: dict[str, float]) -> float:
         amount = operations_file["operationAmount"]["amount"]
 
         url = f"https://api.apilayer.com/currency_data/convert?to={convert_to}&from={convert_from}&amount={amount}"
-
-
         payload = {}
-        headers= {
+        headers = {
           "apikey": API_KEY
         }
 
-        response = requests.request("GET", url, headers=headers, data = payload)
+        response = requests.request("GET", url, headers=headers, data=payload)
 
-        result = response.json()
-        return result['result']
+        result = response.text
 
-print(
-sum_transactions(
-{
-"id": 41428829,
-"state": "EXECUTED",
-"date": "2019-07-03T18:35:29.512364",
-"operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
-"description": "Перевод организации",
-"from": "MasterCard 7158300734726758",
-"to": "Счет 35383033474447895560",
-}
-)
-)
+        parst_result = json.loads(result)
+        returned_result = parst_result
+        return returned_result['result']
+
+# print(
+# sum_transactions(
+# {
+# "id": 41428829,
+# "state": "EXECUTED",
+# "date": "2019-07-03T18:35:29.512364",
+# "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+# "description": "Перевод организации",
+# "from": "MasterCard 7158300734726758",
+# "to": "Счет 35383033474447895560",
+# }
+# )
+# )
