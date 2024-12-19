@@ -150,6 +150,7 @@ for _ in range(3):
 # RUB_transactions = filter_by_currency(transactions, "RUB")
 # for _ in range(2):
 #     print(next(RUB_transactions))
+
 descriptions = transaction_descriptions(transactions)
 for _ in range(5):
     print(next(descriptions))
