@@ -1,4 +1,5 @@
-from unittest.mock import patch, mock_open
+from unittest.mock import mock_open, patch
+
 from src.cvs_xlsx import read_csv_transactions
 
 

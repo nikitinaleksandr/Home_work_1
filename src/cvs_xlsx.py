@@ -1,18 +1,10 @@
-from csv import excel
-from idlelib.iomenu import encoding
-from pathlib import Path
 import csv
+from pathlib import Path
 import pandas as pd
-
-from src.utils import list_dict_transactions
 
 current_dir = Path(__file__).parent.parent.resolve()
 dir_transactions = current_dir/'transactions.csv'
 dir_transactions_excel = current_dir/'transactions_excel.xlsx'
-
-# print(dir_transactions)
-
-# df_csv = pd.read_csv("D:/transactions.csv")
 
 
 def read_csv_transactions(dir_transactions: str) -> list:
@@ -22,14 +14,16 @@ def read_csv_transactions(dir_transactions: str) -> list:
     результат выводится в виде списка словарей.
     """
     list_dict = []
-    with (open(dir_transactions, "r", encoding = "utf-8") as file):
+    with (open(dir_transactions, "r", encoding="utf-8") as file):
         reader = csv.DictReader(file)
         for row in reader:
             list_dict.append(row)
             return list_dict
             print(list_dict)
 
+
 read_csv_transactions(dir_transactions)
+
 
 def read_transactions_excel(dir_transactions: str) -> list:
     """
@@ -41,15 +35,9 @@ def read_transactions_excel(dir_transactions: str) -> list:
     # print(excel_data)
     excel_data_dict = excel_data.to_dict(orient='records')
     return excel_data_dict
-    # print(excel_data_dict)
 
 
 read_transactions_excel(dir_transactions_excel)
-
-
-
-
-
 
 
 # df_csv = pd.read_csv("D:/transactions.csv")
@@ -75,4 +63,3 @@ read_transactions_excel(dir_transactions_excel)
 # df = pd.read_excel("D:/transactions_excel.xlsx")
 # print(df.shape)
 # print(df.head())
-
