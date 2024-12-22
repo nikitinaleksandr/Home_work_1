@@ -31,7 +31,6 @@ def read_csv_transactions(dir_transactions: str) -> list:
 
 read_csv_transactions(dir_transactions)
 
-
 def read_transactions_excel(dir_transactions: str) -> list:
     """
     Функция для считывания финансовых транзакций из Excel,
