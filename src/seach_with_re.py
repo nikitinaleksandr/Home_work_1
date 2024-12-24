@@ -1,6 +1,9 @@
 import re
+from itertools import count
 from typing import Union
-
+# from src.generators import transactions
+from mypy.util import get_class_descriptors
+from collections import Counter
 transactions = [
         {
             "id": 939719570,
@@ -80,22 +83,54 @@ transactions = [
     ]
 
 
-def search_with_str(transactions: Union[list, dict], pattern: str) -> dict[str]:
-    """
-    Функция, которая будет принимать список словарей с данными о банковских операциях и строку поиска,
-    а возвращать список словарей, у которых в описании есть данная строка
-    """
+# def search_with_str(transactions: Union[list, dict], pattern: str) -> dict[str]:
+#     """
+#     Функция, которая будет принимать список словарей с данными о банковских операциях и строку поиска,
+#     а возвращать список словарей, у которых в описании есть данная строка
+#     """
 
-    list_transaction = []
+#     list_transaction = []
+#     for trans in transactions:
+#         # print(trans)
+#
+#         pattern = r'Перевод организации'
+#         get_transactions = re.findall(pattern, str(trans['description']))
+#         if get_transactions != []:
+#             list_transaction.append(trans)
+#     return list_transaction
+#
+# if __name__ == '__main__':
+#     result = search_with_str(transactions, 'Перевод организации')
+#     print(result)
+
+
+def search_description_with_str(transactions: Union[list, dict], dict_description: dict) -> dict[str]:
+    """
+    Функция, которая будет принимать список словарей с данными о банковских операциях и список категорий операций,
+    а возвращать словарь, в котором ключи — это названия категорий, а значения — это количество операций
+    в каждой категории.
+    """
+    dict_transaction = {}
+    list_description = []
     for trans in transactions:
-        # print(trans)
-
-        pattern = r'Перевод организации'
-        get_transactions = re.findall(pattern, str(trans['description']))
-        if get_transactions != []:
-            list_transaction.append(trans)
-        return list_transaction
+        list_description.append(trans['description'])
+    # print(list_description)
+    counted = Counter(list_description)
+    return dict(counted)
 
 
-result = search_with_str(transactions, 'Перевод организации')
-print(result)
+if __name__ == '__main__':
+     result = search_description_with_str(transactions,  ["Перевод организации", "Перевод со счета на счет", "Перевод с карты на карту"])
+     print(result)
+
+
+
+
+
+
+
+# Категории операций хранятся в поле
+# description
+# .
+#
+# Расположение новой функции в структуре проекта определите самостоятельно.
