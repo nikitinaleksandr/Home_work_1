@@ -1,8 +1,8 @@
 from mypy.state import state
 
-from src.generators import filter_by_currency
+from src.generators import filter_by_currency, transaction_descriptions
 from src.utils import list_dict_transactions
-
+from src.processing import sort_by_date
 from pathlib import Path
 current_dir = Path(__file__).parent.parent.resolve()
 operations_file_json = current_dir/'data'/'operations.json'
@@ -65,26 +65,55 @@ def main_function():
     if filter_data == 'да':
         filter_direction = input('Отсортировать по возрастанию или по убыванию?: ').lower()
         if filter_direction == 'по возрастанию':
-            filter_currency = input('Выводить только рублевые транзакции? Да/Нет: ' ).lower()
-            if filter_currency == 'да':
-                filter_word = input('Отфильтровать список транзакций по определенному слову в описании? Да/Нет: ' ).lower()
-                    if filter_word == 'да':
+            # sorted_filter_data = sorted(list_transactions, key=lambda x:x['date'], reverse=False)
+            sorted_filter_data= sort_by_date(list_transactions, False)
+            print(sorted_filter_data)
+        elif filter_direction == 'по убыванию':
+            sorted_filter_data = sort_by_date(list_transactions, True)
+            print(sorted_filter_data)
+        filter_currency = input('Выводить только рублевые транзакции? Да/Нет: ').lower()
+        if filter_currency == 'да':
+            # return filter_by_currency(sorted_filter_data, "RUB")
+            # print(sorted_filter_data)
+            filtered_data = list(filter_by_currency(sorted_filter_data, currency="RUB"))
+            print(filtered_data)
+        elif filter_currency == 'нет':
+            next()
+
+        filter_word = input('Отфильтровать список транзакций по определенному слову в описании? Да/Нет: ').lower()
+        if filter_word == 'да':
+            filtered_descriptions = list(transaction_descriptions(filtered_data))
+            print(filtered_descriptions)
+            # print(sorted_filter_data)
+        # sorted_filter_currency = sorted(filter_currency, key=lambda x:x['operationAmount']['currency']['RUB'])
+        # print(sorted_filter_currency)
+                # filter_word = input('Отфильтровать список транзакций по определенному слову в описании? '
+                #                     'Да/Нет: ').lower()
+                # if filter_word == 'да':
+    # elif filter_data == 'нет':
+    #     print(list_transactions)
+    #     print(list_transactions
+    #     if filter_direction == 'по возрастанию':
+    #         filter_currency = input('Выводить только рублевые транзакции? Да/Нет: ' ).lower()
+    #         if filter_currency == 'да':
+    #             filter_word = input('Отфильтровать список транзакций по определенному слову в описании? Да/Нет: ' ).lower()
+    #                 if filter_word == 'да':
 
 
 
 
 
-        sorted_filter_data = sorted(list_transactions, key=lambda x:x['date'], reverse=False)
-        print(sorted_filter_data)
-    elif filter_data == 'нет':
-        sorted_filter_data = sorted(list_transactions, key=lambda x: x['date'], reverse=False)
-        print(sorted_filter_data)
-
-    filter_direction = input('Отсортировать по возрастанию или по убыванию?: ' ).lower()
-    if filter_direction == 'по возрастанию':
-        pass
-    elif filter_direction == 'по убыванию':
-        pass
+    #     sorted_filter_data = sorted(list_transactions, key=lambda x:x['date'], reverse=False)
+    #     print(sorted_filter_data)
+    # elif filter_data == 'нет':
+    #     sorted_filter_data = sorted(list_transactions, key=lambda x: x['date'], reverse=False)
+    #     print(sorted_filter_data)
+    #
+    # filter_direction = input('Отсортировать по возрастанию или по убыванию?: ' ).lower()
+    # if filter_direction == 'по возрастанию':
+    #     pass
+    # elif filter_direction == 'по убыванию':
+    #     pass
 
 
 

@@ -1,5 +1,6 @@
-from typing import Union
-
+from typing import Union, Any, List, Dict
+# from typing import Any
+# from typing import List
 # from wsgiref.validate import assert_
 
 
@@ -20,7 +21,7 @@ def filter_by_currency(transactions: Union[list, dict], currency: str) -> Union[
             yield item
 
 
-def transaction_descriptions(transactions: Union[list, dict]) -> str:
+def transaction_descriptions(transactions: List[Dict[str, Any]]) -> str:
     """Генератор, который принимает список словарей с транзакциями и возвращает описание каждой операции по очереди."""
 
     if transactions == []:
