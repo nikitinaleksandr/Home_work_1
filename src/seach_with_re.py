@@ -83,25 +83,25 @@ transactions = [
     ]
 
 
-# def search_with_str(transactions: Union[list, dict], pattern: str) -> dict[str]:
-#     """
-#     Функция, которая будет принимать список словарей с данными о банковских операциях и строку поиска,
-#     а возвращать список словарей, у которых в описании есть данная строка
-#     """
+def search_with_str(transactions: Union[list, dict], pattern: str) -> dict[str]:
+    """
+    Функция, которая будет принимать список словарей с данными о банковских операциях и строку поиска,
+    а возвращать список словарей, у которых в описании есть данная строка
+    """
 
-#     list_transaction = []
-#     for trans in transactions:
-#         # print(trans)
-#
-#         pattern = r'Перевод организации'
-#         get_transactions = re.findall(pattern, str(trans['description']))
-#         if get_transactions != []:
-#             list_transaction.append(trans)
-#     return list_transaction
-#
-# if __name__ == '__main__':
-#     result = search_with_str(transactions, 'Перевод организации')
-#     print(result)
+    list_transaction = []
+    for trans in transactions:
+        # print(trans)
+
+        pattern = r'Перевод организации'
+        get_transactions = re.findall(pattern, str(trans['description']))
+        if get_transactions != []:
+            list_transaction.append(trans)
+    return list_transaction
+
+if __name__ == '__main__':
+    result = search_with_str(transactions, 'Перевод организации')
+    print(result)
 
 
 def search_description_with_str(transactions: Union[list, dict], dict_description: dict) -> dict[str]:

@@ -21,6 +21,9 @@ def filter_by_state(list_dictionaries: list, state: str) -> list:
             raise KeyError("Неверное значение 'state'")
     return output_list
 
+'EXECUTED'
+# print(filter_by_state([{'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'},{'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}], 'EXECUTED'))
+
 
 def sort_by_date(list_dictionaries: list, reverse: bool = False) -> list:
     """
