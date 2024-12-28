@@ -1,5 +1,7 @@
 from mypy.state import state
 import re
+from src.masks import get_mask_account
+from src.widget import get_date
 from src.seach_with_re import search_with_str
 from src.generators import filter_by_currency, transaction_descriptions
 from src.utils import list_dict_transactions
@@ -7,7 +9,7 @@ from src.processing import sort_by_date,filter_by_state
 from pathlib import Path
 current_dir = Path(__file__).parent.parent.resolve()
 operations_file_json = current_dir/'data'/'operations.json'
-
+from collections import Counter
 
 def main_function():
     start_program = input("Привет! Добро пожаловать в программу работы с банковскими транзакциями.\n"
@@ -103,12 +105,23 @@ def main_function():
         filtered_descriptions = filtered_currency
         print(filtered_descriptions)
 
+    # counted = Counter(filtered_descriptions)
+    items = 0
+    for item in filtered_descriptions:
+        items +=1
+    # counted = Counter(item['state'] for item in filtered_descriptions)
+    # print(counted)
+
+    print('Распечатываю готовый список транзакций...')
+    print(f'Всего банковских транзакций в выборке: {items}')
+    if filtered_descriptions==[]:
+        print('Не найдено ни одной транзакции, подходящей под ваши условия')
+    else:
+        for item in filtered_descriptions:
+            print(f"{get_date(item['date'])} {item['description']}\n {get_mask_account(item['to'])}\n Сумма: {item['operationAmount']['amount']} {item['operationAmount']['currency']['name']}")
 
 
-            # print('Распечатываю готовый список транзакций...')
-            # if filtered_descriptions == []:
-            #     print('Не найдено ни одной транзакции, подходящей под ваши условия')
-            # print(filtered_descriptions)
+           
             # print(sorted_filter_data)
         # sorted_filter_currency = sorted(filter_currency, key=lambda x:x['operationAmount']['currency']['RUB'])
         # print(sorted_filter_currency)
