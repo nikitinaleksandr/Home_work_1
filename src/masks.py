@@ -29,7 +29,8 @@ def get_mask_account(number_account: str) -> str:
         return f"**{str_number_account[-4:]}"
 
 
-print(get_mask_account(1234567891234567))
+if __name__ == '__main__':
+    print(get_mask_account(1234567891234567))
 
 
 def get_mask_card_number(number_card: str) -> str:
@@ -53,4 +54,5 @@ def get_mask_card_number(number_card: str) -> str:
     return f"{str_number_card[0:4]} {str_number_card[4:6]}** **** {str_number_card[-4:]}"
 
 
-print(get_mask_card_number(1234567898765432))
+if __name__ == '__main__':
+    print(get_mask_card_number(1234567898765432))

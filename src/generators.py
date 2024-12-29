@@ -1,4 +1,5 @@
-from typing import Union, Any, List, Dict
+from typing import Any, Dict, List, Union
+
 # from typing import Any
 # from typing import List
 # from wsgiref.validate import assert_
@@ -152,11 +153,8 @@ if __name__ == '__main__':
 # for _ in range(2):
 #     print(next(RUB_transactions))
 
-
     descriptions = transaction_descriptions(transactions)
     for _ in range(5):
         print(next(descriptions))
-
-
     for card_number in card_number_generator(1, 5):
         print(card_number)

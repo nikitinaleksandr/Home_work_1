@@ -26,7 +26,8 @@ def mask_account_card(info_by_card: str) -> str:
         return f"{str_info_by_card[0:-17]}: {get_mask_card_number(str_info_by_card[-16::])}"
 
 
-print(mask_account_card("Счет 5647839058876378"))
+if __name__ == '__main__':
+    print(mask_account_card("Счет 5647839058876378"))
 
 
 def get_date(card_data: str) -> str:
@@ -41,4 +42,5 @@ def get_date(card_data: str) -> str:
     return f"{card_data[8:10]}.{card_data[5:7]}.{card_data[0:4]}"
 
 
-print(get_date("2024-03-11Т02:26:18.671407"))
+if __name__ == '__main__':
+    print(get_date("2024-03-11Т02:26:18.671407"))

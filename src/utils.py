@@ -48,6 +48,7 @@ def list_dict_transactions(operations_file_json: list) -> Union[list, dict]:
             return []
         return operations_file
 
+
 if __name__ == '__main__':
     print(list_dict_transactions(operations_file_json))
     print(type(list_dict_transactions(operations_file_json)))
