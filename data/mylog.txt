@@ -1,0 +1,3 @@
+my_function ok
+my_function ok
+Function my_function: a. Inputs: (2, 3), kwargs: {}.Function my_function: a. Inputs: (2, 3), kwargs: {}.Function my_function: a. Inputs: (2, 3), kwargs: {}.
